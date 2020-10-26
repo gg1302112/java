@@ -1,5 +1,6 @@
 package com.lzw.java_thread.create;
 
+import javax.annotation.processing.Completion;
 import java.security.PublicKey;
 
 /**
@@ -9,6 +10,7 @@ import java.security.PublicKey;
  *      2.必须要重写run方法，指的是需要执行的核心逻辑
  *      3.线程在启动的时候，不要直接调用run方法，需要通过start()来进行调用
  *      4.每次运行相同的代码，出来的结果可能不一样，原因在于多线程谁先抢占资源无法进行人控制（包括更改优先级，也只是提高被调用的可能）
+ * Runable接口和Thread类实现是使用了proxy代理的设计模式
  */
 public class ThreadDemo extends Thread {
     @Override
