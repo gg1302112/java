@@ -1,32 +1,29 @@
-package com.lzw.java_thread.ticks;
+package com.lzw.java_thread.tickets;
 
 /**
- * @Auther: lzw
- * @Date: 20/10/26 - 10 - 26 - 17:13
- * @Description: com.lzw.java_thread.ticks
- * @version: 1.0
+ *第二种方式：
+ *      1.实现Runable接口
+ *      2.创建四个线程都传入一个Runable子类，实现对象资源共享
+ *      3.调用start()方法
  */
-public class RunableTickets1 implements Runnable{
+public class RunableTickets implements Runnable{
     private int tickets = 10;
     @Override
     public void run() {
         while (tickets>0){
             try {
-                Thread.sleep(100);
+                Thread.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            synchronized (this){
-                if (tickets>0){
-                    System.out.println(Thread.currentThread().getName()+" 剩余"+(tickets--)+"张票");
-                }
+            if (tickets>0){
+                System.out.println(Thread.currentThread().getName()+" 剩余"+(tickets--)+"张票");
             }
-
         }
     }
 
     public static void main(String[] args) {
-        RunableTickets1 rtt = new RunableTickets1();
+        RunableTickets rtt = new RunableTickets();
         Thread td1 = new Thread(rtt);
         Thread td2 = new Thread(rtt);
         Thread td3 = new Thread(rtt);

@@ -1,7 +1,7 @@
-package com.lzw.java_thread.ticks;
+package com.lzw.java_thread.tickets;
 
 /**
- * 使用Thread和Runable联系买票联系共享资源问题
+ * 使用Thread和Runable练习买票和练习共享资源问题
  * 方式一：继承Thread类
  *      1.首先定义一个ticks变量为总票数为10
  *      2.定义run方法，循环的扣除票数量（简单写一下打印ticks票数）

@@ -1,12 +1,10 @@
-package com.lzw.java_thread.ticks;
+package com.lzw.java_thread.tickets;
 
 /**
  * @Auther: lzw
- * @Date: 20/10/26 - 10 - 26 - 17:13
- * @Description: com.lzw.java_thread.ticks
- * @version: 1.0
+ * 使用同步代码块，实现共享资源同步
  */
-public class RunableTickets2 implements Runnable{
+public class RunableTickets1 implements Runnable{
     private int tickets = 10;
     @Override
     public void run() {
@@ -16,19 +14,17 @@ public class RunableTickets2 implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            synchronized (this){
+                if (tickets>0){
+                    System.out.println(Thread.currentThread().getName()+" 剩余"+(tickets--)+"张票");
+                }
+            }
 
-                this.sale();
-
-        }
-    }
-    public synchronized void sale(){
-        if (tickets>0){
-            System.out.println(Thread.currentThread().getName()+" 剩余"+(tickets--)+"张票");
         }
     }
 
     public static void main(String[] args) {
-        RunableTickets2 rtt = new RunableTickets2();
+        RunableTickets1 rtt = new RunableTickets1();
         Thread td1 = new Thread(rtt);
         Thread td2 = new Thread(rtt);
         Thread td3 = new Thread(rtt);
